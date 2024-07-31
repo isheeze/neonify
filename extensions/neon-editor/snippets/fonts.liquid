@@ -1,0 +1,12 @@
+<style>
+  {% for block in app.metafields.neonify.data.value %}
+    {% if block.type == "Fonts" %}
+      {% for font in block.AllFonts %}
+        @font-face {
+          font-family: "{{ font["FontTitle"] }}";
+          src: url('{{ font["FontFile"] }}') format('truetype');
+        }
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</style>

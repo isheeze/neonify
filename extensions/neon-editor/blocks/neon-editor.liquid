@@ -1,0 +1,986 @@
+{% assign blockid = "block-container-" | append: block.id %}
+<style>
+  :root {
+    --brand-color: #a90d6c;
+    --dark-color: #0f2026;
+    --unselected-color: #929292;
+  }
+  @keyframes rgbbg {
+    0% { background: #ff2a4d;}
+    10% { background: #ff7575;}
+    20% { background: #8c59ff;}
+    30% { background: #ff8d02;}
+    40% { background: #fffdcf;}
+    50% { background: #ff90ff;}
+    60% { background: #e1e3e6;}
+    70% { background: #fff97c;}
+    80% { background: #0274fc;}
+    90% { background: #8c59ff;}
+    100% { background: #ff2a4d;}
+  }
+
+  @keyframes rgbshadow {
+    0% {
+      text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #ff2a4d 0px 0px 20px,
+      #ff2a4d 0px 0px 30px,
+      #ff2a4d 0px 0px 40px,
+      #ff2a4d 0px 0px 55px,
+      #ff2a4d 0px 0px 65px,
+      #ff2a4d 0px 0px 75px,
+      #ff2a4d 0px 0px 95px,
+      #ff2a4d 0px 0px 120px;
+    }
+    10% {
+      text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #ff7575 0px 0px 20px,
+      #ff7575 0px 0px 30px,
+      #ff7575 0px 0px 40px,
+      #ff7575 0px 0px 55px,
+      #ff7575 0px 0px 65px,
+      #ff7575 0px 0px 75px,
+      #ff7575 0px 0px 95px,
+      #ff7575 0px 0px 120px;
+    }
+    20% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #8c59ff 0px 0px 20px,
+      #8c59ff 0px 0px 30px,
+      #8c59ff 0px 0px 40px,
+      #8c59ff 0px 0px 55px,
+      #8c59ff 0px 0px 65px,
+      #8c59ff 0px 0px 75px,
+      #8c59ff 0px 0px 95px,
+      #8c59ff 0px 0px 120px;}
+    30% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #ff8d02 0px 0px 20px,
+      #ff8d02 0px 0px 30px,
+      #ff8d02 0px 0px 40px,
+      #ff8d02 0px 0px 55px,
+      #ff8d02 0px 0px 65px,
+      #ff8d02 0px 0px 75px,
+      #ff8d02 0px 0px 95px,
+      #ff8d02 0px 0px 120px;}
+    40% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #fffdcf 0px 0px 20px,
+      #fffdcf 0px 0px 30px,
+      #fffdcf 0px 0px 40px,
+      #fffdcf 0px 0px 55px,
+      #fffdcf 0px 0px 65px,
+      #fffdcf 0px 0px 75px,
+      #fffdcf 0px 0px 95px,
+      #fffdcf 0px 0px 120px;}
+    50% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #ff90ff 0px 0px 20px,
+      #ff90ff 0px 0px 30px,
+      #ff90ff 0px 0px 40px,
+      #ff90ff 0px 0px 55px,
+      #ff90ff 0px 0px 65px,
+      #ff90ff 0px 0px 75px,
+      #ff90ff 0px 0px 95px,
+      #ff90ff 0px 0px 120px;}
+    60% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #e1e3e6 0px 0px 20px,
+      #e1e3e6 0px 0px 30px,
+      #e1e3e6 0px 0px 40px,
+      #e1e3e6 0px 0px 55px,
+      #e1e3e6 0px 0px 65px,
+      #e1e3e6 0px 0px 75px,
+      #e1e3e6 0px 0px 95px,
+      #e1e3e6 0px 0px 120px;}
+    70% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #fff97c 0px 0px 20px,
+      #fff97c 0px 0px 30px,
+      #fff97c 0px 0px 40px,
+      #fff97c 0px 0px 55px,
+      #fff97c 0px 0px 65px,
+      #fff97c 0px 0px 75px,
+      #fff97c 0px 0px 95px,
+      #fff97c 0px 0px 120px;}
+    80% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #0274fc 0px 0px 20px,
+      #0274fc 0px 0px 30px,
+      #0274fc 0px 0px 40px,
+      #0274fc 0px 0px 55px,
+      #0274fc 0px 0px 65px,
+      #0274fc 0px 0px 75px,
+      #0274fc 0px 0px 95px,
+      #0274fc 0px 0px 120px;}
+    90% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #8c59ff 0px 0px 20px,
+      #8c59ff 0px 0px 30px,
+      #8c59ff 0px 0px 40px,
+      #8c59ff 0px 0px 55px,
+      #8c59ff 0px 0px 65px,
+      #8c59ff 0px 0px 75px,
+      #8c59ff 0px 0px 95px,
+      #8c59ff 0px 0px 120px;}
+    100% { text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+      rgb(255, 255, 255) 0px 0px 5px,
+      rgb(255, 255, 255) 0px 0px 10px,
+      #ff2a4d 0px 0px 20px,
+      #ff2a4d 0px 0px 30px,
+      #ff2a4d 0px 0px 40px,
+      #ff2a4d 0px 0px 55px,
+      #ff2a4d 0px 0px 65px,
+      #ff2a4d 0px 0px 75px,
+      #ff2a4d 0px 0px 95px,
+      #ff2a4d 0px 0px 120px;}
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  #{{ blockid }} .rgbbg{
+    animation-name: rgbbg;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+  #{{ blockid }} .rgbshadow{
+    animation-name: rgbshadow;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  #{{ blockid }} *{
+    padding: 0;
+    margin: 0;
+  }
+  #{{ blockid }}{
+    display: flex;
+    height: 100vh;
+  }
+  #{{ blockid }} .brighter{
+    color: white;
+  }
+  #{{ blockid }} .bright{
+    color: #b1b1b1;
+  }
+  #{{ blockid }} .background-img-container{
+    flex: .7;
+    position: sticky;
+    top: 10px;
+  }
+  #{{ blockid }} .customizations-container{
+    flex: .3;
+    padding: 20px;
+    background: var(--dark-color);
+    box-shadow: -9px 0px 15px -10px black;
+    z-index: 1;
+    overflow: auto;
+    padding-bottom: 75px;
+  }
+  #{{ blockid }} .background-img-container .Preview-text{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 50%;
+    user-select: none;
+    cursor: grab;
+    color: white;
+    text-shadow: rgb(255, 255, 255) 0px 0px 2px,
+    rgb(255, 255, 255) 0px 0px 5px,
+    rgb(255, 255, 255) 0px 0px 10px,
+    var(--neon-color) 0px 0px 20px,
+    var(--neon-color) 0px 0px 30px,
+    var(--neon-color) 0px 0px 40px,
+    var(--neon-color) 0px 0px 55px,
+    var(--neon-color) 0px 0px 65px,
+    var(--neon-color) 0px 0px 75px,
+    var(--neon-color) 0px 0px 95px,
+    var(--neon-color) 0px 0px 120px;
+    line-height: 1;
+    transition: all .3s;
+  }
+  #{{ blockid }} .background-img-container .Preview-text.unactive{
+    text-shadow: none;
+    animation: none;
+  }
+  #{{ blockid }} .background-img-container.active .Preview-text{
+    cursor: grabbing;
+  }
+  #{{ blockid }} .background-img-container .Preview-text[data-size="S"]{
+    font-size: 3rem;
+  }
+  #{{ blockid }} .background-img-container .Preview-text[data-size="M"]{
+    font-size: 4rem;
+  }
+  #{{ blockid }} .background-img-container .Preview-text[data-size="L"]{
+    font-size: 5rem;
+  }
+  #{{ blockid }} .background-img-container .Preview-text[data-size="XL"]{
+    font-size: 6rem;
+  }
+  #{{ blockid }} .background-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    user-select: none;
+  }
+  #{{ blockid }} .bb-m{
+    margin-bottom: 20px
+  }
+  #{{ blockid }} .bs-m{
+    margin-bottom: 10
+  }
+  #{{ blockid }} .textareaContainer{
+    height: 82px;
+    box-shadow: 0px 0px 15px 0px var(--brand-color);
+    border-radius: 15px;
+    margin: 15px 0px;
+  }
+  #{{ blockid }} textarea{
+    resize: none;
+    width: 100%;
+    height: 82px;
+    border-radius: 15px;
+    outline: none;
+    box-shadow: none;
+    padding: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 2px solid white;
+    box-shadow: 0px 0px 15px 0px var(--brand-color) inset;
+    background: var(--dark-color);
+    color: white;
+  }
+  #{{ blockid }} .alignment-container svg{
+    width: 16px;
+    fill: var(--unselected-color);
+  }
+  #{{ blockid }} .alignment-container{
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+  #{{ blockid }} .alignment-container .item{
+    border: 2px solid var(--unselected-color);
+    display: flex;
+    aspect-ratio: 1;
+    justify-content: center;
+    padding: 8px !important;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+  #{{ blockid }} .alignment-container .active .item{
+    box-shadow: 0px 0px 10px 0px var(--brand-color) inset;
+    border-color: white;
+  }
+  #{{ blockid }} .alignment-container .active .item svg{
+    fill: white;
+  }
+  #{{ blockid }} .alignment-container .outeritem.active{
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 0px var(--brand-color);
+  }
+  #{{ blockid }} .selected-font svg{
+    width: 20px;
+  }
+  #{{ blockid }} .selected-font-wrapper{
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 0px var(--brand-color);
+    margin-top: 10px !important;
+  }
+  #{{ blockid }} .selected-font{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px !important;
+    border: 2px solid white;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0px 0px 15px 0px var(--brand-color) inset;
+  }
+  #{{ blockid }} .fonts-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px !important;
+  }
+  #{{ blockid }} .font-item{
+    font-size: 27px;
+    border: 2px solid var(--unselected-color);
+    color: var(--unselected-color);
+    width: 170px;
+    height: 55px;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+  #{{ blockid }} .font-item > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+  }
+  #{{ blockid }} .font-item.active{
+    box-shadow: 0 0 15px 0 var(--brand-color);
+    border-color: white;
+  }
+  #{{ blockid }} .font-item.active > div{
+    box-shadow: 0 0 15px 0 var(--brand-color) inset;
+    color: white;
+  }
+  #{{ blockid }} .colorItemContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+    margin-top: 10px !important;
+  }
+  #{{ blockid }} .colorItem > div{
+    width: fit-content;
+    border: 2px solid var(--unselected-color);
+    border-radius: 15px;
+    padding: 3px !important;
+    cursor: pointer;
+    transform: scale(0.8);
+  }
+  #{{ blockid }} .colorItem.active > div{
+    border-color: white;
+    box-shadow: 0px 0px 15px 0px var(--brand-color) inset;
+    transform: scale(1);
+  }
+  #{{ blockid }} .colorItem.active{
+    width: fit-content;
+    box-shadow: 0px 0px 15px 0px var(--brand-color);
+    border-radius: 15px;
+  }
+  #{{ blockid }} .colorItem .color{
+    background: var(--color-swatch);
+    width: 50px;
+    height: 50px;
+    display: block;
+    border-radius: 10px;
+  }
+  #{{ blockid }} .colorItem .color-title{
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-weight: lighter;
+  }
+  #{{ blockid }} .radioSwatchContainer{
+    display: flex;
+    gap: 7px;
+    margin-top: 10px !important;
+    flex-wrap: wrap;
+  }
+  #{{ blockid }} .w-50 > div{
+    flex: 1;
+  }
+  #{{ blockid }} .w-full > div{
+    width: 100%;
+  }
+  #{{ blockid }} .radioSwatchLabel{
+    color: var(--unselected-color);
+    border: 2px solid var(--unselected-color);
+    border-radius: 15px;
+    display: block;
+    padding: 7px 10px !important;
+    line-height: 1;
+    cursor: pointer;
+  }
+  #{{ blockid }} .radioSwatchLabel:has(.popup-trigger){
+    display: flex;
+    justify-content: space-between;
+  }
+  #{{ blockid }} .radioSwatchLabel button{
+    background: var(--brand-color);
+    color: white;
+    border: none;
+    padding: 3px 8px !important;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #{{ blockid }} div:has(> .radioSwatchLabel input[type="radio"]:checked){
+    box-shadow: 0px 0px 15px 0px var(--brand-color);
+    border-radius: 15px;
+    height: fit-content;
+  }
+  #{{ blockid }} .radioSwatchLabel:has(input[type="radio"]:checked) {
+    box-shadow: 0px 0px 15px 0px var(--brand-color) inset;
+    color: white;
+    border-color: white;
+  }
+  #{{ blockid }} .swatchDesc{
+    font-size: 10px;
+    margin-top: 5px !important;
+  }
+  #{{ blockid }} .totalbar{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    padding: 10px !important;
+    background: var(--dark-color);
+    bottom: 0px;
+    align-items: center;
+    z-index: 2;
+    border-top: 2px solid white;
+  }
+  #{{ blockid }} .totalbar > div{
+    flex: 1;
+  }
+  #{{ blockid }} .glow-btn > div > div{
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding: 5px !important;
+    border: 2px solid var(--unselected-color);
+    border-radius: 20px;
+    cursor: pointer;
+    height: fit-content;
+    display: flex;
+  }
+  #{{ blockid }} .glow-btn svg{
+    color: var(--unselected-color);
+    width: 20px;
+  }
+  #{{ blockid }} .glow-btn.active > div {
+    width: fit-content;
+  }
+  #{{ blockid }} .glow-btn.active > div > div {
+    box-shadow: 0 0 15px 0 var(--brand-color) inset;
+    border-color: white;
+  }
+  #{{ blockid }} .glow-btn.active > div {
+    border-radius: 15px;
+    box-shadow: 0 0 15px 0 var(--brand-color);
+  }
+  #{{ blockid }} .glow-btn.active svg{
+    color: white
+  }
+  #{{ blockid }} .next-btn{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  #{{ blockid }} .next-btn .divider{
+    background: white;
+    width: 2px;
+    display: block;
+    box-shadow: 0px 0px 6px 2px var(--brand-color);
+  }
+  #{{ blockid }} .next-btn .price{
+    color: white;
+    line-height: 1;
+    font-size: 30px;
+  }
+  #{{ blockid }} .next-btn .price > span{
+    font-size: 14px;
+  }
+  #{{ blockid }} .next-btn button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 0 var(--brand-color);
+  }
+  #{{ blockid }} .next-btn .next{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 10px !important;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 0 var(--brand-color) inset;
+  }
+  #{{ blockid }} .next-btn svg{
+    width: 20px;
+  }
+  #{{ blockid }} .background-images{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  #{{ blockid }} .background-images > div > div {
+    width: 55px;
+    height: 55px;
+    padding: 3px !important;
+    border: 2px solid var(--unselected-color);
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  #{{ blockid }} .background-images > div > div img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  #{{ blockid }} .background-images > .active{
+    box-shadow: 0px 0px 15px 0px var(--brand-color);
+    border-radius: 15px;
+  }
+  #{{ blockid }} .background-images > .active > div{
+    box-shadow: 0px 0px 15px 0px var(--brand-color) inset;
+    border-color: white;
+  }
+  #{{ blockid }} .customizations-container > .popup-trigger {
+    text-align: center;
+    color: #ffffffbf;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: pointer;
+  }
+  .neonify-modal{
+    background: white;
+    max-height: 85vh;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    max-width: 90vw;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 30px -10px;
+    display: none;
+    overflow: auto;
+  }
+  .neonify-modal > div{
+    display: flex;
+  }
+  .neonify-modal-close{
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    background: white;
+  }
+  .neonify-modal-close svg{
+    width: 25px;
+  }
+  
+@media only screen and (max-width: 960px) {
+  #{{ blockid }}{
+    display: block;
+    height: auto;
+  }
+  #{{ blockid }} .background-img-container{
+    position: relative;
+  }
+  #{{ blockid }} .totalbar > div{
+    flex: auto;
+  }
+  #{{ blockid }} .next-btn button{
+    font-size: 15px;
+  }
+  #{{ blockid }} .next-btn .price{
+    font-size: 20px;
+  }
+}
+</style>
+{% render 'fonts' %}
+
+<div id="{{ blockid }}">
+  <div class="background-img-container">
+    <img class="background-img" src="{% unless block.settings.img1 %}https://www.yellowpop.com/cdn/shop/files/sofa4.jpg?v=1642704170{% else %}{{ block.settings.img1 | image_url: width: '1100' }}{% endunless %}" />
+    <div class="Preview-text" style="--neon-color: rgb(255, 42, 77)">Text</div>
+  </div>
+  <div class="customizations-container">
+    <div class="bb-m">
+      <h2 class="brighter">{{ block.settings.title }}</h2>
+    </div>
+    {% for block in app.metafields.neonify.data.value %}
+      {% case block.type %}
+      {% when "Textarea" %}
+      <div>
+        <h3 class="brighter">{{ block.Title }}</h3>
+        <p class="bright">{{ block.Description }}</p>
+        <div class="textareaContainer"><textarea id="Neonify-text-editor">{{ block.DefaultValue }}</textarea></div>
+        {% if block.ShowTextAlignButtons != 'false' %}
+        <div class="alignment-container">
+          <div class="outeritem active" data-value="left"><div class="item left-align"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 64c0 17.7-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l224 0c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32L32 352c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 224c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></div></div>
+          <div class="outeritem" data-value="center"><div class="item center-align"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 64c0-17.7-14.3-32-32-32L128 32c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32zm96 128c0-17.7-14.3-32-32-32L32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32-14.3 32-32zM0 448c0 17.7 14.3 32 32 32l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 416c-17.7 0-32 14.3-32 32zM352 320c0-17.7-14.3-32-32-32l-192 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l192 0c17.7 0 32-14.3 32-32z"/></svg></div></div>
+          <div class="outeritem" data-value="right"><div class="item right-align"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M448 64c0 17.7-14.3 32-32 32L192 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l224 0c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 224c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg></div></div>
+        </div>
+        {% endif %}
+      </div>
+
+      {% when "Fonts" %}
+      <div class="bb-m">
+        <h3 class="brighter">{{ block.Title }}</h3>
+        <p class="bright">{{ block.Description }}</p>
+        <div class="selected-font-wrapper">
+          <div class="selected-font">
+            <div>Select Font</div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+        </div>
+        <div class="fonts-wrapper brighter" style="display: none;">
+          {% for font in block.AllFonts %}
+            <div class="font-item{% if forloop.index0 == 0 %} active{% endif %}" data-min-letters="{{ font.FontMinimumLetters }}" data-price="{{ font.FontPrice }}" data-per-letter-price="{{ font.FontPricePerLetter }}">
+              <div style="font-family: '{{ font["FontTitle"] }}';">{{ font["FontTitle"] }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% when "Colors" %}
+      <div class="bb-m">
+        <h3 class="brighter">{{ block.Title }}</h3>
+        <p class="bright">{{ block.Description }}</p>
+        <div class="colorItemContainer">
+          {% for color in block.AllColors %}
+          <div class="colorItem{% if forloop.index0 == 0 %} active{% endif %}" data-min-letters="{{ color.ColorMinimumLetters }}" data-price="{{ color.ColorPrice }}" data-per-letter-price="{{ color.ColorPricePerLetter }}">
+            <div>
+              <div class="color{% if color.ColorTitle == "RGB" %} rgbbg{% endif %}" {% unless color.ColorTitle == "RGB" %}style="--color-swatch: {{ color.ColorCode }}"{% endunless %}></div>
+              <div class="color-title">{{ color.ColorTitle }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% when "Options" %}
+        <div class="bb-m alloptions">
+          <h3 class="brighter">{{ block.Title }}</h3>
+          <p class="bright">{{ block.Description }}</p>
+          <div class="radioSwatchContainer{% if block.OptionFullWidth != 'true' %} w-50{% else %} w-full{% endif %}">
+            {% for option in block.AllOptions %}
+            <div>
+              <label for="{{ block.Title | handle }}-{{ option.OptionTitle | handle }}" class="radioSwatchLabel" style="text-align: {% if block.OptionTextAlignCenter == 'true' %} center{% else %} left{% endif %};">
+                <div>
+                  <div class="swatchTitle">{{ option.OptionTitle }}</div>
+                  <div class="swatchDesc">{{ option.OptionDescription }}</div>
+                  <input data-min-letters="{{ option.OptionMinimumLetters }}" data-price="{{ option.OptionPrice }}" data-per-letter-price="{{ option.OptionPricePerLetter }}" name="{{ block.Title | handle }}" type="radio" id="{{ block.Title | handle }}-{{ option.OptionTitle | handle }}" value="{{ option.OptionTitle }}" style="display: none;" {% if forloop.index0 == 0 %}checked{% endif %}>
+                </div>
+                {% if option.ModalBtnLbl != blank and option.ModalImgURL != blank %}
+                  <div class="popup-trigger" data-modal-img="{{ option.ModalImgURL }}">
+                    <button>{{ option.ModalBtnLbl }}</button>
+                  </div>
+                {% endif %}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endcase %}
+      {% if block.ModalBtnLbl and block.ModalImgURL %}
+        <div class="popup-trigger" data-modal-img="{{ block.ModalImgURL }}">{{ block.ModalBtnLbl }}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="totalbar">
+      <div class="glow-btn active">
+        <div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="background-images">
+        {% if block.settings.img1 %}<div class="active"><div>{{ block.settings.img1 | image_url: width: '1100' | image_tag }} </div></div>{% endif %}
+        {% if block.settings.img2 %}<div><div>{{ block.settings.img2 | image_url: width: '1100' | image_tag }} </div></div>{% endif %}
+        {% if block.settings.img3 %}<div><div>{{ block.settings.img3 | image_url: width: '1100' | image_tag }} </div></div>{% endif %}
+      </div>
+      <div class="next-btn">
+        
+        <div class="price">
+          <span>$</span>550
+        </div>
+        <div class="divider"></div>
+        <div>
+          <button>
+            <div class="next">
+              Add to Cart
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  const data = {}
+  let price = 0
+
+  const wrapper = document.querySelector("#{{ blockid }} .background-img-container");
+  const preview = document.querySelector("#{{ blockid }} .Preview-text")
+
+  var txtEditor
+
+  const calculatePrice = () => {
+    const pricing = document.querySelectorAll(`
+      #{{ blockid }} input[data-price]:checked,
+      #{{ blockid }} input[data-per-letter-price]:checked,
+      #{{ blockid }} [data-price].active,
+      #{{ blockid }} [data-per-letter-price].active`
+    )
+    price = 0
+    pricing.forEach(p => {
+      price += Number(p.getAttribute('data-price') || 0)
+      if(txtEditor){
+        const factor = p.getAttribute('data-min-letters') ? Math.max(txtEditor.value.replace(/\s/g, '').length - Number(p.getAttribute('data-min-letters')), 0) : 1
+        price += (Number(p.getAttribute('data-per-letter-price') || 0) * factor)
+      }
+    })
+    document.querySelector('#{{ blockid }} .totalbar .price').innerHTML = `<span>$</span>${price}`
+  }
+
+  {% for block in app.metafields.neonify.data.value %}
+    {% case block.type %}
+      {% when "Textarea" %}
+        txtEditor = document.querySelector("#{{ blockid }} textarea")
+        preview.innerHTML = txtEditor.value
+        data["Text"] = txtEditor.value
+        txtEditor.addEventListener("input",function (){
+          preview.innerHTML = txtEditor.value.replace(/\n/g, '<br>')
+          data["Text"] = txtEditor.value
+          calculatePrice()
+        })
+        {% if block.ShowTextAlignButtons != 'false' %}
+          const alignBtns = document.querySelectorAll("#{{ blockid }} .alignment-container > div")
+          preview.style.textAlign = document.querySelector("#{{ blockid }} .alignment-container .active").getAttribute("data-value")
+          data["Text Align"] = document.querySelector("#{{ blockid }} .alignment-container .active").getAttribute("data-value")
+          for(let btn of alignBtns){
+            btn.addEventListener("click",function(){
+              preview.style.textAlign = this.getAttribute("data-value")
+              data["Text Align"] = this.getAttribute("data-value")
+
+              document.querySelector("#{{ blockid }} .alignment-container .active").classList.remove("active")
+              this.classList.add("active")
+            })
+          }
+        {% endif %}
+      {% when "Fonts" %}
+        const fontBtns = document.querySelectorAll("#{{ blockid }} .font-item")
+
+        document.querySelector("#{{ blockid }} .selected-font").addEventListener("click",()=>{
+          const fontWrapper = document.querySelector("#{{ blockid }} .fonts-wrapper")
+          fontWrapper.style.display = fontWrapper.style.display == "none" ? "flex" : "none"
+        })
+
+        preview.style.fontFamily = document.querySelector("#{{ blockid }} .font-item.active > div").style.fontFamily
+        data["Font Family"] = document.querySelector("#{{ blockid }} .font-item.active > div").style.fontFamily
+        document.querySelector("#{{ blockid }} .selected-font > div").innerHTML = document.querySelector("#{{ blockid }} .font-item.active > div").innerHTML
+        document.querySelector("#{{ blockid }} .selected-font").style.fontFamily = document.querySelector("#{{ blockid }} .font-item.active > div").style.fontFamily
+        for(let btn of fontBtns){
+          btn.addEventListener("click",function(){
+            preview.style.fontFamily = this.querySelector("div").style.fontFamily
+            data["Font Family"] = this.querySelector("div").style.fontFamily
+            
+            document.querySelector("#{{ blockid }} .selected-font").style.fontFamily = this.querySelector("div").style.fontFamily
+            document.querySelector("#{{ blockid }} .selected-font > div").innerHTML = this.querySelector("div").innerHTML
+
+            document.querySelector("#{{ blockid }} .font-item.active").classList.remove("active")
+            this.classList.add("active")
+            calculatePrice()
+          })
+        }
+      {% when "Colors" %}
+        const colorBtns = document.querySelectorAll("#{{ blockid }} .colorItem")
+        preview.style.setProperty("--neon-color",document.querySelector("#{{ blockid }} .colorItem.active .color").style.getPropertyValue("--color-swatch"))
+        if(document.querySelector("#{{ blockid }} .colorItem.active .color").classList.contains("rgbbg")){
+          preview.classList.add("rgbshadow")
+          data["Color"] = "RGB"
+        }else{
+          preview.classList.remove("rgbshadow")
+        }
+        data["Color"] = document.querySelector("#{{ blockid }} .colorItem.active .color-title").innerText
+        for(let btn of colorBtns){
+          btn.addEventListener("click",function(){
+            preview.style.setProperty("--neon-color",this.querySelector(".color").style.getPropertyValue("--color-swatch"))
+            data["Color"] = this.querySelector(".color-title").innerText
+
+            if(this.querySelector(".color").classList.contains("rgbbg")){
+              preview.classList.add("rgbshadow")
+              data["Color"] = "RGB"
+            }else{
+              preview.classList.remove("rgbshadow")
+            }
+            document.querySelector("#{{ blockid }} .colorItem.active").classList.remove("active")
+            this.classList.add("active")
+            calculatePrice()
+          })
+        }
+      {% when "Options" %}
+        {
+          const el = document.querySelectorAll('#{{ blockid }} input[name="{{ block.Title | handle }}"]')
+
+          preview.setAttribute("data-{{ block.Title | handle }}",document.querySelector('#{{ blockid }} input[name="{{ block.Title | handle }}"]:checked').value)
+          data["{{ block.Title }}"] = document.querySelector('#{{ blockid }} input[name="{{ block.Title | handle }}"]:checked').value
+          el.forEach(s => {
+            s.addEventListener('change', () => {
+              preview.setAttribute("data-{{ block.Title | handle }}",s.value)
+              data["{{ block.Title }}"] = s.value
+
+              calculatePrice()
+            })
+          })
+        }
+    {% endcase %}
+  {% endfor %}
+  
+  calculatePrice()
+  preview.addEventListener("mousedown", function() {
+      document.onmousemove = function(e) {
+          var x = e.clientX - wrapper.getBoundingClientRect().x;
+          var y = e.clientY - wrapper.getBoundingClientRect().y;
+          wrapper.classList.add("active")
+          preview.style.left = (wrapper.clientWidth - preview.clientWidth/2 - 10 > x && preview.clientWidth/2 + 10 < x) ? x + "px" : preview.style.left;
+          preview.style.top = (wrapper.clientHeight - preview.clientHeight/2 - 10 > y && preview.clientHeight/2 + 10 < y) ? y + "px" : preview.style.top;
+      };
+  });
+
+  document.addEventListener("mouseup", function() {
+      document.onmousemove = null;
+      wrapper.classList.remove("active")
+  });
+
+  document.querySelector("#{{ blockid }} .glow-btn").addEventListener("click",function(){
+    this.classList.toggle("active")
+    document.querySelector("#{{ blockid }} .background-img-container .Preview-text").classList.toggle("unactive")
+  })
+
+  document.querySelector("#{{ blockid }} .background-img").src = document.querySelector('#{{ blockid }} .background-images .active img').src
+  document.querySelectorAll('#{{ blockid }} .background-images div').forEach(el => {
+    el.addEventListener("click",()=>{
+      document.querySelector('#{{ blockid }} .background-images .active').classList.remove("active")
+      el.classList.add("active")
+      
+      document.querySelector("#{{ blockid }} .background-img").src = el.querySelector("img").src
+    })
+  })
+
+  document.querySelector("#{{ blockid }} .next-btn").addEventListener("click",()=>{
+    document.querySelector("#{{ blockid }} .next-btn svg").innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"></path>`
+    document.querySelector("#{{ blockid }} .next-btn svg").style.animation = "spin 2s linear infinite"
+
+    domtoimage.toJpeg(document.querySelector('#{{ blockid }} .background-img-container')).then(function (dataUrl) {
+      const formdata = new FormData()
+      formdata.append("title", "Custom Neon Sign")
+      formdata.append("price", price)
+      formdata.append("image", dataUrl)
+
+      const requestOptions = {
+        method: "POST",
+        body: formdata,
+        redirect: "follow"
+      };
+      fetch(window.Shopify.routes.root + "a/neonify", requestOptions).then((res) => {
+        return res.json()
+      }).then(res => {
+        if(res.variantId){
+          let variantForm = {
+            'items': [{
+              'id': res.variantId.replace("gid://shopify/ProductVariant/",""),
+              'quantity': 1,
+              'properties': data
+            }]
+          };
+          console.log(variantForm)
+          fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(variantForm)
+          })
+          .then(response => {
+            window.location = window.Shopify.routes.root + 'cart'
+          }).then(res => console.log(res))
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        }
+      })
+      .catch((error) => console.error(error))
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  })
+
+  {
+    const el = document.createElement('div')
+    el.innerHTML = `<div class="neonify-modal-close">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </div>
+    <div><img src="" /></div>`
+
+    el.classList.add('neonify-modal')
+    document.querySelector('body').append(el)
+  }
+
+  document.querySelectorAll("#{{ blockid }} .popup-trigger").forEach(s => {
+    s.addEventListener("click", ()=>{
+      document.querySelector(".neonify-modal img").src = s.getAttribute("data-modal-img")
+      document.querySelector(".neonify-modal").style.display="block"
+    })
+  })
+  document.querySelector(".neonify-modal .neonify-modal-close").addEventListener("click", () => document.querySelector(".neonify-modal").style.display="none")
+</script>
+{% schema %}
+{
+  "name": "Neon Editor",
+  "target": "section",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title of the Section",
+      "default": "Create Your Own Custom Neon"
+    },
+    
+    {
+      "id": "img1",
+      "type": "image_picker",
+      "label": "Background Image 1",
+      "info": "This will be default selected Image"
+    },
+    
+    {
+      "id": "img2",
+      "type": "image_picker",
+      "label": "Background Image 2"
+    },
+    
+    {
+      "id": "img3",
+      "type": "image_picker",
+      "label": "Background Image 3"
+    }
+  ]
+}
+{% endschema %}
